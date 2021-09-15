@@ -9,6 +9,27 @@ describe('Здесь могла бы быть ваша реклама', () => {
   test('Проверяем тримминг для пробела в начале слова', () => {
     expect(fullTrim(' Это домашка')).toEqual('Это домашка');
   });
+  test('fullTrim works', () => {
+    expect(fullTrim).toBeDefined();
+    expect(typeof fullTrim).toBe('function');
+  });
+
+  test('fullTrim trims whitespaces at the end of a stirng', () => {
+    expect(fullTrim('text    ').match(/text/))
+  });
+  test('fullTrim does not trim whitespaces in the middle', () => {
+    expect(fullTrim('textA textB').match(/textA textB/))
+  });
+  test('fullTrim trims tab at the beginning of a string', () => {
+    expect(fullTrim(' text').match(/text/))
+  });
+  test('fullTrim trims tab at the end of a string', () => {
+    expect(fullTrim('text ').match(/text/))
+  });
+  test('fullTrim does not allow !string', () => {
+    expect(() => fullTrim(123)).toThrow();
+  });
+});
 
   /**
    * Напишите параметризированный unit (describe.each`table`) тест для функции,
@@ -25,4 +46,20 @@ describe('Здесь могла бы быть ваша реклама', () => {
   test('Передать валидную кличку', () => {
     expect(nameIsValid('Имя')).toEqual(true);
   });
-});
+  describe('nameValid test', () => {
+    test.each`
+    a             | expected
+    ${'Ik'}       | ${true}
+    ${'I'}        | ${false}
+    ${''}         | ${false} // why does the function returns true? 'a' is shorter than 2 characters
+    ${'I k'}      | ${false}
+    ${123}        | ${false}
+    ${undefined}  | ${'error'} // why does not the function return an error?
+    `('$a = $expected', ({ a, expected }) =>  {
+    if (expected === 'error') {
+      expect(() => nameIsValid(a)).toThrow();
+    } else {
+      expect(nameIsValid(a)).toBe(expected);
+    }
+    });
+  })
