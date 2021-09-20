@@ -46,18 +46,20 @@ describe('Здесь могла бы быть ваша реклама', () => {
   test('Передать валидную кличку', () => {
     expect(nameIsValid('Имя')).toEqual(true);
   });
-
   describe('nameValid test', () => {
     test.each`
     a             | expected
     ${'Ik'}       | ${true}
     ${'I'}        | ${false}
-    ${''}         | ${false} // why does the function return true? 'a' is shorter than 2 characters
+    ${''}         | ${false} // why does the function returns true? 'a' is shorter than 2 characters
     ${'I k'}      | ${false}
     ${123}        | ${false}
     ${undefined}  | ${'error'} // why does not the function return an error?
-  
-    `("pass when $a = $expected", ({ a, expected }) =>  {
+    `('$a = $expected', ({ a, expected }) =>  {
+    if (expected === 'error') {
+      expect(() => nameIsValid(a)).toThrow();
+    } else {
       expect(nameIsValid(a)).toBe(expected);
+    }
     });
-  });
+  })

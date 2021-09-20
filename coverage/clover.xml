@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1632174605164" clover="3.2.0">
+  <project timestamp="1632174605164" name="All files">
+    <metrics statements="2" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="0" elements="9" coveredelements="0" complexity="0" loc="2" ncloc="2" packages="1" files="1" classes="1"/>
+    <file name="homework3.js" path="D:\Otus\jsCourseJest2021-08\src\homework3.js">
+      <metrics statements="2" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="8" count="0" type="cond" truecount="0" falsecount="3"/>
+      <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+    </file>
+  </project>
+</coverage>
